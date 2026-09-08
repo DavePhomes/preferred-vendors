@@ -1,33 +1,404 @@
-<div data-fs-success style="display:none; padding: 24px; background: #FFFFFF; border-radius: 12px; color: #16283F; font-family: 'Inter', sans-serif;">
-  Thanks! I'll follow up within a day or two.
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preferred Vendor Connections | DP Homes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-navy: #16283F;
+      --color-gold: #BC9A5F;
+      --color-cream: #F6F2EA;
+      --color-white: #FFFFFF;
+      --color-text-dark: #2D3748;
+      --color-text-muted: #6B6459;
+      --color-border: #EAE5DC;
+      --font-heading: 'Fraunces', Georgia, serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-<form id="vendor-form" style="font-family: 'Inter', sans-serif;">
-  <label for="name">Name</label>
-  <input type="text" id="name" name="name" data-fs-field required />
-  <span data-fs-error="name"></span>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  <label for="email">Email</label>
-  <input type="email" id="email" name="email" data-fs-field required />
-  <span data-fs-error="email"></span>
+    body {
+      background-color: var(--color-cream);
+      color: var(--color-text-dark);
+      font-family: var(--font-body);
+      line-height: 1.7;
+      padding: 48px 24px 80px;
+    }
 
-  <label for="phone">Phone</label>
-  <input type="tel" id="phone" name="phone" data-fs-field required />
-  <span data-fs-error="phone"></span>
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
 
-  <label for="vendor_type">What kind of vendor do you need?</label>
-  <input type="text" id="vendor_type" name="vendor_type" data-fs-field required />
-  <span data-fs-error="vendor_type"></span>
+    /* Brand Header */
+    .brand-bar {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
 
-  <label for="description">Tell me a bit about what you're working on</label>
-  <textarea id="description" name="description" data-fs-field required></textarea>
-  <span data-fs-error="description"></span>
+    .brand-dp {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.35rem;
+      color: var(--color-navy);
+    }
 
-  <button type="submit" data-fs-submit-btn style="background:#16283F; color:#BC9A5F; border-radius:8px; padding:12px 24px; border:none; font-weight:600;">Send</button>
-</form>
+    .brand-homes {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      font-size: 1.35rem;
+      color: var(--color-gold);
+      margin-right: 8px;
+    }
 
-<script>
-  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-  formspree('initForm', { formElement: '#vendor-form', formId: 'xeaqrwoj' });
-</script>
-<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+    .brand-kw {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #8C857B;
+    }
+
+    /* Page Title */
+    .page-title {
+      font-family: var(--font-heading);
+      font-size: 2.75rem;
+      font-weight: 600;
+      color: var(--color-navy);
+      line-height: 1.2;
+      margin-bottom: 24px;
+      letter-spacing: -0.01em;
+    }
+
+    /* Editorial Intro */
+    .intro-text p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--color-text-dark);
+      margin-bottom: 18px;
+    }
+
+    /* Form Card Container */
+    .form-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 36px 32px;
+      margin-top: 36px;
+      margin-bottom: 48px;
+      box-shadow: 0 2px 10px rgba(22, 40, 63, 0.04);
+    }
+
+    .form-heading {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      color: var(--color-navy);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .form-subheading {
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--color-navy);
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 0.98rem;
+      color: var(--color-text-dark);
+      background-color: #FAF9F6;
+      transition: all 0.2s ease-in-out;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--color-gold);
+      background-color: var(--color-white);
+      box-shadow: 0 0 0 3px rgba(188, 154, 95, 0.15);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    span[data-fs-error] {
+      color: #C53030;
+      font-size: 0.85rem;
+      margin-top: 4px;
+      display: block;
+    }
+
+    .submit-btn {
+      background-color: var(--color-navy);
+      color: var(--color-gold);
+      border: 1px solid var(--color-navy);
+      border-radius: 8px;
+      padding: 14px 32px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      background-color: #0F1C2D;
+      color: #D4B277;
+    }
+
+    /* Success Message Box */
+    .success-box {
+      padding: 32px 24px;
+      background: var(--color-white);
+      border: 1px solid var(--color-gold);
+      border-radius: 12px;
+      color: var(--color-navy);
+      font-family: var(--font-body);
+      text-align: center;
+      margin-top: 36px;
+      margin-bottom: 48px;
+      box-shadow: 0 2px 10px rgba(22, 40, 63, 0.04);
+    }
+
+    .success-box h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--color-gold);
+      margin-bottom: 8px;
+    }
+
+    .success-box p {
+      color: var(--color-text-dark);
+      font-size: 1.05rem;
+    }
+
+    /* Closing Dark Navy CTA Block */
+    .cta-box {
+      background-color: var(--color-navy);
+      border-radius: 14px;
+      padding: 52px 36px;
+      margin-top: 56px;
+      text-align: center;
+      color: var(--color-white);
+    }
+
+    .cta-eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: 18px;
+    }
+
+    .cta-text {
+      font-family: var(--font-body);
+      color: var(--color-cream);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 620px;
+      margin: 0 auto 28px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 12px 32px;
+      border-radius: 8px;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .btn-gold {
+      background-color: var(--color-gold);
+      color: var(--color-navy);
+      border: 1px solid var(--color-gold);
+    }
+
+    .btn-gold:hover {
+      background-color: #cbb07d;
+      border-color: #cbb07d;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--color-white);
+      border: 1px solid var(--color-gold);
+    }
+
+    .btn-outline:hover {
+      background-color: rgba(188, 154, 95, 0.15);
+    }
+
+    .contact-subtext {
+      margin-top: 24px;
+      font-size: 0.92rem;
+      color: var(--color-gold);
+    }
+
+    .contact-subtext a {
+      color: var(--color-cream);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    @media (max-width: 680px) {
+      body {
+        padding: 32px 16px 60px;
+      }
+      .page-title {
+        font-size: 2.1rem;
+      }
+      .form-card {
+        padding: 24px 18px;
+      }
+      .cta-box {
+        padding: 36px 20px;
+      }
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Brand Header -->
+    <div class="brand-bar">
+      <span class="brand-dp">DP</span>
+      <span class="brand-homes">Homes</span>
+      <span class="brand-kw">KELLER WILLIAMS BELLEVUE</span>
+    </div>
+
+    <!-- Page Title -->
+    <h1 class="page-title">Preferred Vendor Connections</h1>
+
+    <!-- Editorial Intro -->
+    <div class="intro-text">
+      <p>Every home comes with needs, big and small. A trusted plumber for a Sunday emergency. A contractor for a kitchen remodel. A landscaper, an electrician, a cleaning service, a handyman who actually shows up. Heck, even a good restaurant recommendation.</p>
+      <p>Over ten years in real estate and another 20 as a business owner has connected me with a lot of professionals across the entire Greater Seattle area. Some I’d send my own family to. Others, not so much.</p>
+      <p>Rather than hand you an outdated static list, tell me what you need and I’ll personally connect you with someone I trust for the job.</p>
+    </div>
+
+    <!-- Formspree Success Message -->
+    <div data-fs-success class="success-box" style="display:none;">
+      <h3>Message Received!</h3>
+      <p>Thanks! I'll personally follow up within a day or two with a trusted name and number.</p>
+    </div>
+
+    <!-- Formspree Form Card -->
+    <div class="form-card">
+      <h2 class="form-heading">What do you need?</h2>
+      <p class="form-subheading">Fill out the quick form below and I'll connect you directly with someone I trust.</p>
+
+      <form id="vendor-form">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" data-fs-field required placeholder="Jane Doe" />
+          <span data-fs-error="name"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" data-fs-field required placeholder="jane@example.com" />
+          <span data-fs-error="email"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" data-fs-field required placeholder="(206) 555-0123" />
+          <span data-fs-error="phone"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="vendor_type">What kind of vendor do you need?</label>
+          <input type="text" id="vendor_type" name="vendor_type" data-fs-field required placeholder="e.g., Plumber, Painter, Landscaper, Roofer..." />
+          <span data-fs-error="vendor_type"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Tell me a bit about what you're working on</label>
+          <textarea id="description" name="description" data-fs-field required placeholder="Briefly describe the project, scope, or repair..."></textarea>
+          <span data-fs-error="description"></span>
+        </div>
+
+        <button type="submit" data-fs-submit-btn class="submit-btn">Send Request</button>
+      </form>
+    </div>
+
+    <!-- Closing Dark Navy CTA Block -->
+    <div class="cta-box">
+      <div class="cta-eyebrow">HAVE AN URGENT NEED?</div>
+      <p class="cta-text">
+        Dealing with an active leak, electrical issue, or time-sensitive repair? Don’t wait on email—call or text me directly anytime and I’ll help connect you immediately.
+      </p>
+      <div class="cta-buttons">
+        <a href="tel:2062274477" class="btn btn-gold">Call / Text Dave</a>
+        <a href="mailto:davepiedrahita@kw.com?subject=Urgent%20Vendor%20Request" class="btn btn-outline">Email Dave</a>
+      </div>
+      <div class="contact-subtext">
+        Direct: <a href="tel:2062274477" style="color:#F6F2EA; text-decoration:none;">(206) 227-4477</a> &nbsp;|&nbsp; 
+        Email: <a href="mailto:davepiedrahita@kw.com" style="color:#F6F2EA; text-decoration:none;">davepiedrahita@kw.com</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Formspree Scripts -->
+  <script>
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '#vendor-form', formId: 'xeaqrwoj' });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+</body>
+</html>
