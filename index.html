@@ -72,7 +72,7 @@
     <div class="form-card">
       <h2 class="form-heading">What do you need?</h2>
       <p class="form-subheading">Fill out the quick form below and I'll connect you directly with someone I trust.</p>
-      <form id="vendor-form">
+      <form id="vendor-form" action="https://formspree.io/f/xeaqrwoj" method="POST">
         <div class="form-group">
           <label for="name">Your Name</label>
           <input type="text" id="name" name="name" data-fs-field required placeholder="Jane Doe" />
@@ -119,4 +119,6 @@
     window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
     formspree('initForm', { formElement: '#vendor-form', formId: 'xeaqrwoj' });
   </script>
-  <script src="
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+</body>
+</html>
