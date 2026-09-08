@@ -1,0 +1,33 @@
+<div data-fs-success style="display:none; padding: 24px; background: #FFFFFF; border-radius: 12px; color: #16283F; font-family: 'Inter', sans-serif;">
+  Thanks! I'll follow up within a day or two.
+</div>
+
+<form id="vendor-form" style="font-family: 'Inter', sans-serif;">
+  <label for="name">Name</label>
+  <input type="text" id="name" name="name" data-fs-field required />
+  <span data-fs-error="name"></span>
+
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email" data-fs-field required />
+  <span data-fs-error="email"></span>
+
+  <label for="phone">Phone</label>
+  <input type="tel" id="phone" name="phone" data-fs-field required />
+  <span data-fs-error="phone"></span>
+
+  <label for="vendor_type">What kind of vendor do you need?</label>
+  <input type="text" id="vendor_type" name="vendor_type" data-fs-field required />
+  <span data-fs-error="vendor_type"></span>
+
+  <label for="description">Tell me a bit about what you're working on</label>
+  <textarea id="description" name="description" data-fs-field required></textarea>
+  <span data-fs-error="description"></span>
+
+  <button type="submit" data-fs-submit-btn style="background:#16283F; color:#BC9A5F; border-radius:8px; padding:12px 24px; border:none; font-weight:600;">Send</button>
+</form>
+
+<script>
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#vendor-form', formId: 'xeaqrwoj' });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
